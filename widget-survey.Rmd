@@ -1,5 +1,5 @@
 ---
-title: "How likely would you be to recommend this course?" 
+title: ""
 output: html_document
 runtime: shiny
 resource_files:
@@ -16,7 +16,6 @@ library(magrittr)
 library(shiny)
 library(googlesheets4)
 library(googledrive)
-library(shinysurveys)
 
 authenticate <- function() {
   # designate project-specific cache
@@ -47,7 +46,7 @@ authenticate <- function() {
 }
 ```
 
-
+### How likely would you be to recommend this course?
 ```{r echo = FALSE}
 sliderInput("response", "", 5, min = 1, max = 10)
 actionButton("submit", "Submit", icon("fas fa-sync"))
@@ -60,18 +59,21 @@ observeEvent(input$submit, {
     title = "Thank you for your feedback!"
   ))
 
+    # Get URL query
+    query <- parseQueryString(session$clientData$url_search)
+    if (is.null(query[["course_name"]])) query[["course_name"]] <- NA
   response_data <- data.frame(
     response = input$response,
-    course = "some course"
-    )
+    course = query[["course_name"]]
+  )
   str(response_data)
-  
+
   print(response_data)
-  
+
   authenticate()
   googlesheets4::sheet_append(
     data = response_data,
-    ss = "https://docs.google.com/spreadsheets/d/1EZvP4nf0XBYQ2I1aBBF9ljoZpTtLds_JcOJqPfDIcYE/edit#gid=0", 
+    ss = "https://docs.google.com/spreadsheets/d/1EZvP4nf0XBYQ2I1aBBF9ljoZpTtLds_JcOJqPfDIcYE/edit#gid=0",
     sheet = "response_data"
   )
 })
