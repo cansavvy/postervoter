@@ -46,8 +46,10 @@ authenticate <- function() {
 }
 ```
 
-### How likely would you be to recommend this course?
+<h4 align="center">How likely would you be to recommend this resource?</h4>.
+
 ```{r echo = FALSE}
+tags$style(type = "text/css", ".irs-grid-pol.small {height: 0px;}")
 sliderInput("response", "", 5, min = 1, max = 10)
 actionButton("submit", "Submit", icon("fas fa-sync"))
 ```
@@ -56,13 +58,17 @@ actionButton("submit", "Submit", icon("fas fa-sync"))
 ```{r, echo = FALSE}
 observeEvent(input$submit, {
   showModal(modalDialog(
-    title = "Thank you for your feedback!"
+    title = "Thank you for your feedback!",
+    footer = NULL
   ))
 
     # Get URL query
     query <- parseQueryString(session$clientData$url_search)
+    print(query)
     if (is.null(query[["course_name"]])) query[["course_name"]] <- NA
+
   response_data <- data.frame(
+    time = Sys.time(),
     response = input$response,
     course = query[["course_name"]]
   )
@@ -76,5 +82,16 @@ observeEvent(input$submit, {
     ss = "https://docs.google.com/spreadsheets/d/1EZvP4nf0XBYQ2I1aBBF9ljoZpTtLds_JcOJqPfDIcYE/edit#gid=0",
     sheet = "response_data"
   )
+
 })
 ```
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QML6KR0YVW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QML6KR0YVW');
+</script>
