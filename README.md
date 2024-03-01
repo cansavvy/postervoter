@@ -1,14 +1,6 @@
 # Widget Survey
 
-The widget survey allows you to have a quick way to get feedback on your website. You can include it in your footer and it will put something like this:
-
-<center>
-<div class="container">
-  <iframe class="responsive-iframe" src="https://c-savonen.shinyapps.io/widget-survey/?course_name=widget_survey" style="width: 300px; height: 200px; overflow: auto;"></iframe>
-</div>
-  </div>
-</center>
-
+The widget survey allows you to have a quick way to get feedback on your website. [See demo here](https://c-savonen.shinyapps.io/widget-survey/?course_name=widget_repo)
 
 The html looks like this:
 
