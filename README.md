@@ -9,6 +9,7 @@ The widget survey allows you to have a quick way to get feedback on your website
   </div>
 </center>
 
+
 The html looks like this:
 
 ```
