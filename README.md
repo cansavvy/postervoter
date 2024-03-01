@@ -7,7 +7,7 @@ The html looks like this:
 ```
 <center>
 <div class="container">
-  <iframe class="responsive-iframe" src="https://c-savonen.shinyapps.io/widget-survey/?course_name=widget_survey" style="width: 300px; height: 200px; overflow: auto;"></iframe>
+  <iframe class="responsive-iframe" src="https://c-savonen.shinyapps.io/widget-survey/?course_name=widget_repo" style="width: 300px; height: 200px; overflow: auto;"></iframe>
 </div>
   </div>
 </center>
