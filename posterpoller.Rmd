@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "posterpoller"
 output: html_document
 runtime: shiny
 resource_files:
@@ -46,22 +46,57 @@ authenticate <- function() {
 }
 ```
 
+
 ```{r echo = FALSE}
-tags$style(type = 'text/css', '
-           #big_slider 
-           .irs-grid-text {font-size: 20px} 
-           .irs-grid-pol.small {height: 0px;} 
-           .irs-min, .irs-max {visibility: hidden !important;}') 
-div(id = 'big_slider', align = "center", sliderInput("response", "How likely are you to recommend this resource?", 6, min = 0, max = 10))
-p(align = "center","0 = Not at all 10 = Absolutely")
-div(align = "center", actionButton("submit", "Submit", icon("fas fa-sync")))
+get_poster_id <- function(poster_id = "AMYAM4850U") {
+poster_sheet <- "https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit"
+authenticate()
+
+poster_key <- googlesheets4::read_sheet(
+  poster_sheet, 
+  sheet = "posterpoller_id_key"
+)
+
+# Get URL query
+query <- parseQueryString(session$clientData$url_search)
+print(query)
+if (is.null(query[["poster_id"]])) query[["poster_id"]] <- NA
+  
+poster_info <- poster_key %>% 
+  dplyr::filter(poster_id == query[["poster_id"]])
+
+return(poster_info)
+}
+```
+
+```{r}
+reactive({
+  poster_info <- get_poster_id(poster_id = "AMYAM4850U")
+  })
+
+```
+
+
+```{r }
+output$UI <- renderUI({
+  
+h2("Poster Info:")
+p("Does this info match the poster you wish to vote on? \n") 
+p("Presenter:", poster_info$presenter_name, "\n")
+p("Title:", poster_info$poster_title, "\n") 
+selectInput("ranking", "Choose a ranking for this poster:",
+            list(`Ranking` = list("First", "Second", "Third")))
+      
+actionButton("submit", "Submit", icon("fas fa-sync"))
+
+})
 ```
 
 
 ```{r, echo = FALSE}
 observeEvent(input$submit, {
   showModal(modalDialog(
-    title = "Thank you for your feedback!",
+    title = "Thank you for your vote!!",
     footer = NULL
   ))
 
@@ -82,7 +117,7 @@ observeEvent(input$submit, {
   authenticate()
   googlesheets4::sheet_append(
     data = response_data,
-    ss = "https://docs.google.com/spreadsheets/d/1EZvP4nf0XBYQ2I1aBBF9ljoZpTtLds_JcOJqPfDIcYE/edit#gid=0",
+    ss = "votes",
     sheet = "response_data"
   )
 
