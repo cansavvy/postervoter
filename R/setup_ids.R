@@ -19,6 +19,8 @@ make_random_ids <- function(n = 1) {
 #' @importFrom googlesheets4 sheet_write sheet_properties
 #' @importFrom purrr pmap
 #' @importFrom dplyr filter pull
+#' @importFrom magrittr %>%
+#' @importFrom googledrive as_id
 #' @export
 #' @examples \notrun {
 #'
@@ -30,7 +32,9 @@ make_random_ids <- function(n = 1) {
 #'
 #'}
 
-generate_poster_ids <- function(prefill_url, poster_googlesheet) {
+generate_poster_ids <- function(prefill_url, poster_googlesheet, dest_folder = "qr_codes") {
+
+  library(magrittr)
 
   poster_key <- googlesheets4::read_sheet(
     poster_googlesheet
@@ -39,6 +43,7 @@ generate_poster_ids <- function(prefill_url, poster_googlesheet) {
   num_of_posters <- nrow(poster_key)
 
   poster_key$poster_id <- make_random_ids(num_of_posters)
+  poster_key$prefill_url <- prefill_url
 
   sheet_url <- googlesheets4::sheet_write(
     as.data.frame(poster_key),
@@ -46,16 +51,26 @@ generate_poster_ids <- function(prefill_url, poster_googlesheet) {
     sheet = "posterpoller_id_key"
   )
 
-  purrr::pmap(
-    dplyr::select(poster_key, poster_id, presenter_name), function(poster_id, presenter_name) {
+  qr_code_links <- purrr::pmap(poster_key, function(prefill_url, poster_id, presenter_name, poster_title) {
 
-    make_qr_code(prefill_url,
+    qr_link <- make_qr_code(prefill_url = prefill_url,
                  poster_id = poster_id,
-                 poster_name = poster_name,
-                 dest_folder = "qr_codes"
+                 poster_title = poster_title,
+                 presenter_name = presenter_name,
+                 dest_folder = dest_folder
                  )
 
+    return(qr_link)
   })
+
+  poster_data <- data.frame(poster_key,
+                            qr_link = unlist(qr_code_links))
+
+  sheet_url <- googlesheets4::sheet_write(
+    poster_data,
+    ss = poster_googlesheet,
+    sheet = "posterpoller_id_key"
+  )
 
   base_url <- "https://docs.google.com/spreadsheets/d/"
 
@@ -65,9 +80,13 @@ generate_poster_ids <- function(prefill_url, poster_googlesheet) {
 
   url <-paste0(
     base_url,
-    as_id(sheet_url),
+    googledrive::as_id(sheet_url),
     "/edit#gid=",
     sheet_id)
 
-  return(as_id(sheet_url))
+  message("Data saved in ", url)
+
+  browseURL(url)
+
+  return(poster_data)
 }

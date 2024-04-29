@@ -1,0 +1,86 @@
+---
+title: "posterpoller-workflow"
+author: Candace Savonen
+output: html_notebook
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(posterpoller)
+```
+
+
+## Set Up 
+
+If for any reason you need to regenerate the same ids you will want to set the seed
+
+```{r}
+set.seed(1234)
+```
+
+1. Create a Googlesheet that has the `poster_title` and `presenter_name` as columns: 
+
+[See example here](https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0)
+
+Keep this `poster_googlesheet` link handy. 
+
+```{r echo = FALSE}
+googlesheets4::read_sheet(
+    ss = "https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0"
+  )
+```
+
+
+2. Authorize posterpoller package to access files in your Google Drive. 
+
+```{r eval = FALSE}
+posterpoller::authorize()
+```
+
+3. Make a new poll with `make_poll()` function. 
+
+```{r}
+form_info <- make_poll(new_name = "New Poster Poll")
+```
+
+4. In the opened window of the new poll you created, click the vertical "..." for `More options` and choose "Get prefill link".
+
+<img src ="resources/prefill_link_button.png" width=300px">
+
+In this screen, put `{poster_id}` and `{poster_title}` and `{presenter_name}` as the responses. 
+
+<img src ="resources/entries.png" width=300px">
+
+Then click "Get Link" on the bottom.
+
+There will be a tiny pop up at the bottom left that says "COPY LINK". Click that button. 
+
+<img src ="resources/copy_link.png" width=200px">
+
+Keep this `prefill_url` handy for the next step. 
+
+4. Run generate `generate_poster_ids()` function by putting your `prefill_url` and `poster_googlesheet` into this function. 
+
+Your links should look something like this: 
+
+```{r eval = FALSE}
+prefill_url <- "https://docs.google.com/forms/d/e/1FAIpQLSeyLuU0f-2ow2kI62QWR4dIcr7hBib51yhnDThBvUNOL0z-RQ/viewform?usp=pp_url&entry.38519462=%7Bposter_id%7D"
+poster_googlesheet <- "https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0"
+```
+
+Now we can run the function. 
+
+```{r eval = FALSE}
+generate_poster_ids(prefill_url = prefill_url,
+                    poster_googlesheet = poster_googlesheet)
+```
+
+```{r}
+sessionInfo()
+```
