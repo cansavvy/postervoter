@@ -23,6 +23,7 @@ Imports:
     magrittr, 
     rvest,
     rprojroot,
+    ggplot2
 Suggests: 
     knitr,
     rmarkdown,

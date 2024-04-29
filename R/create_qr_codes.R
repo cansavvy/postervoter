@@ -38,5 +38,5 @@ make_qr_code <- function(prefill_url,
 
   message("QR Code generated and stored as ", png_file)
 
-  return(api_endpoint)
+  return(list(url = api_endpoint, file_path = png_file))
 }
