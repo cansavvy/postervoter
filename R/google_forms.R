@@ -1,3 +1,58 @@
+#' Get Google Forms
+#' @description This is a function to get the Google Forms API requests.
+#' The scopes it uses are the `See all your Google Forms forms.` and `See all responses to your Google Forms forms.`
+#' If you don't check this box on the OAuth screen this function won't work.
+#' @param url The endpoint URL for the request
+#' @param token credentials for access to Google using OAuth. `authorize("google")`
+#' @param body_params The body parameters for the request
+#' @param query_params The body parameters for the request
+#' @param return_request Should a list of the request be returned as well?
+#' @returns This function returns a list from a API response JSON file
+#' @importFrom httr config accept_json content
+#' @importFrom jsonlite fromJSON
+#' @importFrom assertthat assert_that is.string
+#' @export
+request_google_forms <- function(token, url,
+                                 body_params = NULL,
+                                 query_params = NULL,
+                                 return_request = TRUE) {
+  if (is.null(token)) {
+    # Get auth token
+    token <- get_token(app_name = "google")
+  }
+  config <- httr::config(token = token)
+
+  result <- httr::GET(
+    url = url,
+    body = body_params,
+    query = query_params,
+    config = config,
+    httr::accept_json(),
+    encode = "json"
+  )
+
+  request_info <- list(
+    url = url,
+    token = token,
+    body_params = body_params,
+    query_params = query_params
+  )
+
+  if (httr::status_code(result) != 200) {
+    httr::stop_for_status(result)
+    return(result)
+  }
+
+  # Process and return results
+  result_content <- httr::content(result, "text")
+  result_list <- jsonlite::fromJSON(result_content)
+
+  if (return_request) {
+    return(list(result = result_list, request_info = request_info))
+  } else {
+    return(result_list)
+  }
+}
 
 #' Setup posterpoller form
 #' @param form_id The form_id that is desired to be copied.
@@ -10,10 +65,9 @@
 #' @examples \dontrun{
 #' #'
 #' # Make the form
-#' form_info <- make_poll(form_id = "https://docs.google.com/forms/d/someformidhere/edit",
-#'                        new_name = "copied form")
+#' form_info <- make_poll(new_name = "New Poster Poll")
 #' }
-make_poll <- function(form_id, new_name = NULL, quiet = FALSE) {
+make_poll <- function(new_name = "New Poster Poll", quiet = FALSE) {
 
     # Get endpoint url
   url <- "https://www.googleapis.com/drive/v3/files/1x2QwyztUMaL0mVFRN4Ds6fThnpJJ_z-FzLvfvHlbZ7M/copy"
@@ -38,9 +92,11 @@ make_poll <- function(form_id, new_name = NULL, quiet = FALSE) {
   result_content <- content(result, "text")
   result_list <- fromJSON(result_content)
 
-  if (quiet) {
-    message(paste("posterpoller form created at", result_list$id))
+  if (!quiet) {
+    message(paste0("posterpoller form created at https://docs.google.com/forms/d/", result_list$id))
   }
+
+  browseURL(paste0("https://docs.google.com/forms/d/", result_list$id))
 
   return(result_list)
 }
@@ -58,16 +114,22 @@ make_poll <- function(form_id, new_name = NULL, quiet = FALSE) {
 #' @examples \dontrun{
 #'
 #' authorize("google")
-#' form_info <- get_google_form(
-#'   "https://docs.google.com/forms/d/1Neyj7wwNpn8wC7NzQND8kQ30cnbbETSpT0lKhX7uaQY/edit"
-#' )
-#' form_id <- "https://docs.google.com/forms/d/1Neyj7wwNpn8wC7NzQND8kQ30cnbbETSpT0lKhX7uaQY/edit"
 #'
-#' ### OR You can give it a direct form id
+#' form_info <- make_poll(new_name = "New Poster Poll")
 #'
-#' form_info <- get_google_form("1Neyj7wwNpn8wC7NzQND8kQ30cnbbETSpT0lKhX7uaQY")
+#' # This has the id
+#' form_info$id
+#'
+#' form_info <- get_google_form(form_info$id)
+#'
+#' ### OR You can give it a direct form id or URL
+#'
+#' form_info <- get_google_form("https://docs.google.com/forms/d/11xv81kvPTHISISFAKEPbilbpaC0s2HY8NO3js3Y/edit")
+#'
+#'
+#' name="entry.
 #' }
-get_google_form <- function(form_id, token = NULL, dataformat = "dataframe") {
+get_google_form <- function(form_id, token = NULL) {
   if (is.null(token)) {
     # Get auth token
     token <- get_token(app_name = "google")
@@ -78,15 +140,19 @@ get_google_form <- function(form_id, token = NULL, dataformat = "dataframe") {
     form_id <- gsub("https://docs.google.com/forms/d/e/|https://docs.google.com/forms/d/", "", form_id)
   }
 
+  # Get auth token
+  token <- get_token()
+  config <- httr::config(token = token)
+
+  tmp <- httr::GET("https://docs.google.com/forms/d/11xv81kvPYWxh66lHHsa1b4PbilbpaC0s2HY8NO3js3Y/prefill" ,
+                   config = config)
+
+  tmp
+
   form_info_url <- gsub("\\{formId\\}", form_id, "https://forms.googleapis.com/v1/forms/{formId}")
   form_response_url <- gsub("\\{formId\\}", form_id, "https://forms.googleapis.com/v1/forms/{formId}/responses")
 
   message(paste0("Trying to grab form: ", form_id))
-
-  form_info <- request_google_forms(
-    url = form_info_url,
-    token = token
-  )
 
   response_info <- request_google_forms(
     url = form_response_url,
@@ -99,19 +165,5 @@ get_google_form <- function(form_id, token = NULL, dataformat = "dataframe") {
     response_info = response_info
   )
 
-  if (dataformat == "dataframe") {
-    metadata <- get_question_metadata(form_info)
-
-    if (length(result$response_info$result) > 0) {
-      answers_df <- extract_answers(result)
-    } else {
-      answers_df <- "no responses yet"
-    }
-    result <- list(
-      title = result$form_metadata$result$info$title,
-      metadata = metadata,
-      answers = answers_df
-    )
-  }
   return(result)
 }

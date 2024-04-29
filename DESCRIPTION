@@ -1,12 +1,35 @@
 Package: posterpoller
-Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: Seamless open-source poster voting for conferences powered by Google Forms
+Version: 0.0.1
+Authors@R: c(
+    person("Candace", "Savonen", , 
+    c("cansav09@gmail.com","csavonen@fredhutch.org"), 
+    role = c("aut", "cre"))
+    )
+Description: Use Google forms to allow voting for posters at conferences using QR-codes. This package helps you automatically set that up for easy polling. 
+License: GPL-3
+URL: https://github.com/fhdsl/posterpoller
+BugReports: https://github.com/fhdsl/posterpoller/issues
+Imports:
+    httr,
+    jsonlite,
+    assertthat,
+    openssl,
+    dplyr,
+    purrr,
+    tidyr,
+    googledrive,
+    googlesheets4,
+    magrittr, 
+    rvest,
+    rprojroot,
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    withr
+Config/testthat/edition: 3
 Encoding: UTF-8
-LazyData: true
 RoxygenNote: 7.3.1
+LazyData: true
+VignetteBuilder: knitr

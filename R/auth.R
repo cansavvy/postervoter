@@ -1,3 +1,14 @@
+### Declare all the scopes
+scopes_list <- c(
+  "https://www.googleapis.com/auth/spreadsheets",
+  "https://www.googleapis.com/auth/spreadsheets.readonly",
+  'https://www.googleapis.com/auth/drive.file',
+  'https://www.googleapis.com/auth/drive',
+  'https://www.googleapis.com/auth/drive.file',
+  'https://www.googleapis.com/auth/drive.metadata'
+)
+
+
 #' Authorize R package to access endpoints
 #' @description This is a function to authorize the R package to access APIs interactively. To learn more about the privacy policy for posterpoller [read here](https://www.metricminer.org/privacypolicy.html)
 #' @param app_name app would you like to authorize? Supported apps are 'google' 'calendly' and 'github'
@@ -38,11 +49,6 @@ authorize <- function(app_name = "google",
   }
 
   if (app_name == "google") {
-    scopes_list <- c(
-      "https://www.googleapis.com/auth/drive.file",
-      "https://www.googleapis.com/auth/spreadsheets",
-      "https://www.googleapis.com/auth/spreadsheets.readonly"
-    )
 
     token <- httr::oauth2.0_token(
       endpoint = app_set_up(app_name)$endpoint,
@@ -137,11 +143,6 @@ auth_from_secret <- function(app_name = "google", token, access_token, refresh_t
     if (is.null(access_token) || is.null(refresh_token)) {
       stop("For Google auth, need access_token and refresh_token cannot be NULL")
     }
-    scopes_list <- c(
-      "https://www.googleapis.com/auth/drive.file",
-      "https://www.googleapis.com/auth/spreadsheets",
-      "https://www.googleapis.com/auth/spreadsheets.readonly"
-    )
 
     credentials <- list(
       access_token = access_token,

@@ -6,7 +6,7 @@ default_creds_path <- function(app_name) {
   list.files(
     pattern = paste0(app_name, "_default_creds.rds"),
     recursive = TRUE,
-    system.file("extdata", package = "metricminer"),
+    system.file("extdata", package = "posterpoller"),
     full.names = TRUE
   )
 }
@@ -16,7 +16,7 @@ encrypt_creds_path <- function(app_name) {
   list.files(
     pattern = paste0(app_name, "_encrypt.rds"),
     recursive = TRUE,
-    system.file("extdata", package = "metricminer"),
+    system.file("extdata", package = "posterpoller"),
     full.names = TRUE
   )
 }
@@ -25,7 +25,7 @@ key_encrypt_creds_path <- function() {
   list.files(
     pattern = "encrypt_pass.rds",
     recursive = TRUE,
-    system.file("extdata", package = "metricminer"),
+    system.file("extdata", package = "posterpoller"),
     full.names = TRUE
   )
 }
@@ -43,21 +43,21 @@ cache_secrets_folder <- function() {
   file_path <- list.files(
     pattern = "cached-secrets",
     recursive = TRUE,
-    tools::R_user_dir("metricminer", which = "cache"),
+    tools::R_user_dir("posterpoller", which = "cache"),
     full.names = TRUE,
     include.dirs = TRUE,
   )
 
   if (length(file_path) == 0) {
     dir.create(file.path(
-      tools::R_user_dir("metricminer", which = "cache"),
+      tools::R_user_dir("posterpoller", which = "cache"),
       "cached-secrets"
     ), recursive = TRUE, showWarnings = FALSE)
   }
   list.files(
     pattern = "cached-secrets",
     recursive = TRUE,
-    tools::R_user_dir("metricminer", which = "cache"),
+    tools::R_user_dir("posterpoller", which = "cache"),
     full.names = TRUE,
     include.dirs = TRUE,
   )

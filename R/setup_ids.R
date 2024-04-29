@@ -1,13 +1,36 @@
 
+#' Make a random id
+#' @description This returns a random jumble of letters and numbers that are used as poster ids
+#' @param n How many ids do you want returned?
+#' @returns This function returns a list from a API response JSON file
+#' @export
+#'
 make_random_ids <- function(n = 1) {
   a <- do.call(paste0, replicate(5, sample(LETTERS, n, TRUE), FALSE))
   paste0(a, sprintf("%04d", sample(9999, n, TRUE)), sample(LETTERS, n, TRUE))
 }
 
+#' Generate poster ids
+#' @description Given a poster googlesheet with the columns `poster_title` and `presenter_name` this function will create a new sheet that has a column with unique poster ids
+#' @param prefill_url Go to your form, click on the vertical "..." to see more options in the right corner. Click "get prefill link".
+#' Put in the poster id and poster name responses {poster_id} and {poster_name} respectively
+#' @param poster_googlesheet
+#' @returns This function returns a list from a API response JSON file
+#' @importFrom googlesheets4 sheet_write sheet_properties
+#' @importFrom purrr pmap
+#' @importFrom dplyr filter pull
+#' @export
+#' @examples \notrun {
+#'
+#' prefill_url <- "https://docs.google.com/forms/d/e/1FAIpQLSepdIqUoLA9fgPksF_x7r5-hvTbd8ZoDH2h0uUQuvVdvhujMA/viewform?usp=pp_url&entry.38519462=%7Bposter_id%7D&entry.1154882998=%7Bposter_name%7D"
+#' poster_googlesheet <- "https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0"
+#'
+#'generate_poster_ids(prefill_url = prefill_url,
+#'                    poster_googlesheet = poster_googlesheet)
+#'
+#'}
 
-generate_poster_ids <- function(poster_googlesheet) {
-
-  auth()
+generate_poster_ids <- function(prefill_url, poster_googlesheet) {
 
   poster_key <- googlesheets4::read_sheet(
     poster_googlesheet
@@ -26,16 +49,17 @@ generate_poster_ids <- function(poster_googlesheet) {
   purrr::pmap(
     dplyr::select(poster_key, poster_id, presenter_name), function(poster_id, presenter_name) {
 
-    make_qr_code(poster_id = poster_id,
-                 presenter_name = presenter_name,
-                 app_url = "test/")
+    make_qr_code(prefill_url,
+                 poster_id = poster_id,
+                 poster_name = poster_name,
+                 dest_folder = "qr_codes"
+                 )
 
   })
 
-
   base_url <- "https://docs.google.com/spreadsheets/d/"
 
-  sheet_id <- sheet_properties(sheet_url) %>%
+  sheet_id <-  googlesheets4::sheet_properties(sheet_url) %>%
     dplyr::filter(name == "posterpoller_id_key") %>%
     dplyr::pull(id)
 
@@ -44,9 +68,6 @@ generate_poster_ids <- function(poster_googlesheet) {
     as_id(sheet_url),
     "/edit#gid=",
     sheet_id)
-
-
-
 
   return(as_id(sheet_url))
 }
