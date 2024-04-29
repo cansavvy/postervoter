@@ -2,7 +2,7 @@
 #' Make a random id
 #' @description This returns a random jumble of letters and numbers that are used as poster ids
 #' @param n How many ids do you want returned?
-#' @returns This function returns a list from a API response JSON file
+#' @returns A vector of length n with that many random ids
 #' @export
 #'
 make_random_ids <- function(n = 1) {
@@ -15,7 +15,7 @@ make_random_ids <- function(n = 1) {
 #' @param prefill_url Go to your form, click on the vertical "..." to see more options in the right corner. Click "get prefill link".
 #' Put in the poster id and poster name responses {poster_id} and {poster_name} respectively
 #' @param poster_googlesheet
-#' @returns This function returns a list from a API response JSON file
+#' @returns A folder of QR code PNGs, a data frame with the information, and googlesheets that has the links to those QR_codes and poster ids
 #' @importFrom googlesheets4 sheet_write sheet_properties
 #' @importFrom purrr pmap
 #' @importFrom dplyr filter pull
