@@ -14,7 +14,6 @@ Imports:
     httr,
     jsonlite,
     assertthat,
-    openssl,
     dplyr,
     purrr,
     tidyr,
@@ -23,7 +22,8 @@ Imports:
     magrittr, 
     rvest,
     rprojroot,
-    ggplot2
+    ggplot2, 
+    magick,
 Suggests: 
     knitr,
     rmarkdown,
@@ -31,6 +31,6 @@ Suggests:
     withr
 Config/testthat/edition: 3
 Encoding: UTF-8
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 LazyData: true
 VignetteBuilder: knitr

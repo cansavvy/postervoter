@@ -17,7 +17,10 @@ make_random_ids <- function(n = 1, seed = 1234) {
 #' @param prefill_url Go to your form, click on the vertical "..." to see more options in the right corner. Click "get prefill link".
 #' Put in the poster id and poster name responses {poster_id} and {poster_name} respectively
 #' @param poster_googlesheet A link to a googlesheet that contains at least two column names that are `poster_title` and `presenter_name`
-#' @returns A folder of QR code PNGs, a data frame with the information, and googlesheets that has the links to those QR_codes and poster ids
+#' @param dest_folder A character string of the folder where qr-codes should be saved. If the folder doesn't exist, one will be made with this name. Default is `qr-codes`.
+#' @param poster_id By default poster ids will be created. Alternatively you can use this argument to specify the column name of the existing IDs in the sheet you'd like to use.
+#' @param pdf_compile By default all QR codes created will be compiled into a PDF. This argument is a character that is the file path you'd like this PDF to be saved to.
+#' @returns A PDF and folder of QR code PNGs, a data frame with the information, and googlesheets that has the links to those QR_codes and poster ids
 #' @importFrom googlesheets4 sheet_write sheet_properties
 #' @importFrom purrr pmap
 #' @importFrom dplyr filter pull
@@ -36,8 +39,9 @@ make_random_ids <- function(n = 1, seed = 1234) {
 
 generate_poster_ids <- function(prefill_url,
                                 poster_googlesheet,
-                                dest_folder = "qr_codes",
-                                poster_id = NULL) {
+                                dest_folder = "qr-codes",
+                                poster_id = NULL,
+                                pdf_compile = "all-qr-codes.pdf") {
 
   library(magrittr)
 
@@ -103,6 +107,16 @@ generate_poster_ids <- function(prefill_url,
 
   message("Data saved in ", url)
 
+  if (!is.null(pdf_compile)) {
+    message("Compling as PDF")
+    all_qr_codes <- list.files("itcr_2024_qr-codes", full.names = TRUE)
+
+    all_images <- purrr::reduce(
+      purrr::map(all_qr_codes, magick::image_read),
+      c
+    )
+    magick::image_write(all_images , format = "pdf", pdf_compile)
+  }
   browseURL(url)
 
   return(poster_data)
