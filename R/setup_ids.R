@@ -34,17 +34,28 @@ make_random_ids <- function(n = 1, seed = 1234) {
 #'
 #'}
 
-generate_poster_ids <- function(prefill_url, poster_googlesheet, dest_folder = "qr_codes") {
+generate_poster_ids <- function(prefill_url,
+                                poster_googlesheet,
+                                dest_folder = "qr_codes",
+                                poster_id = NULL) {
 
   library(magrittr)
 
   poster_key <- googlesheets4::read_sheet(
     poster_googlesheet
   )
-
   num_of_posters <- nrow(poster_key)
 
-  poster_key$poster_id <- make_random_ids(num_of_posters)
+  if (!all(c("presenter_name", "poster_title") %in% colnames(poster_key))) stop("No columns named `presenter_name`, `poster_title` found.")
+
+  if (is.null(poster_id)) {
+    poster_key <- poster_key %>% dplyr::select(presenter_name, poster_title)
+    poster_key$poster_id <- make_random_ids(num_of_posters)
+  } else {
+    poster_key <- poster_key %>% dplyr::select(presenter_name, poster_title, "poster_id" = poster_id)
+
+  }
+
   poster_key$prefill_url <- prefill_url
   poster_key$dest_folder <- dest_folder
 
@@ -77,13 +88,6 @@ generate_poster_ids <- function(prefill_url, poster_googlesheet, dest_folder = "
     ss = poster_googlesheet,
     sheet = "posterpoller_id_key"
   )
-
-  purrr::pmap(poster_data %>% dplyr::select(presenter_name, file_paths),
-              function(presenter_name, file_paths){
-    add_presenter_name(presenter_name = presenter_name,
-                       png = file_paths)
-
-  })
 
   base_url <- "https://docs.google.com/spreadsheets/d/"
 
