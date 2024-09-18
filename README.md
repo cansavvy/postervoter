@@ -1,3 +1,18 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [posterpoller](#posterpoller)
+  - [Install the package](#install-the-package)
+  - [Set Up](#set-up)
+- [Conducting the session](#conducting-the-session)
+  - [Example participant voter instructions](#example-participant-voter-instructions)
+  - [During the session](#during-the-session)
+  - [Calculating the scores](#calculating-the-scores)
+  - [Example calculation code:](#example-calculation-code)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # posterpoller
 
 opensource polling system for poster competitions or other things!
