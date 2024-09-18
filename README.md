@@ -47,17 +47,17 @@ googlesheets4::read_sheet(poster_googlesheet)
 
 5. In the opened window of the new poll you created, click the vertical "..." for `More options` and choose "Get prefill link".
 
-<img src ="resources/prefill_link_button.png" width=300px">
+<img src ="resources/prefill_link_button.png" width=300px>
 
 In this screen, put `{poster_id}` and `{poster_title}` and `{presenter_name}` as the responses respectively.
 
-<img src ="resources/entries.png" width=300px">
+<img src ="resources/entries.png" width=300px>
 
 Then click "Get Link" on the bottom.
 
 There will be a tiny pop up at the bottom left that says "COPY LINK". Click that button.
 
-<img src ="resources/copy_link.png" width=200px">
+<img src ="resources/copy_link.png" width=200px>
 
 Copy and paste this URL below to declare as an R object. It should look something like the example below. We'll need this for the next step.
 
