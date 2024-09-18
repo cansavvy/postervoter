@@ -4,16 +4,28 @@
 \alias{generate_poster_ids}
 \title{Generate poster ids}
 \usage{
-generate_poster_ids(prefill_url, poster_googlesheet, dest_folder = "qr_codes")
+generate_poster_ids(
+  prefill_url,
+  poster_googlesheet,
+  dest_folder = "qr-codes",
+  poster_id = NULL,
+  pdf_compile = "all-qr-codes.pdf"
+)
 }
 \arguments{
 \item{prefill_url}{Go to your form, click on the vertical "..." to see more options in the right corner. Click "get prefill link".
 Put in the poster id and poster name responses {poster_id} and {poster_name} respectively}
 
 \item{poster_googlesheet}{A link to a googlesheet that contains at least two column names that are `poster_title` and `presenter_name`}
+
+\item{dest_folder}{A character string of the folder where qr-codes should be saved. If the folder doesn't exist, one will be made with this name. Default is `qr-codes`.}
+
+\item{poster_id}{By default poster ids will be created. Alternatively you can use this argument to specify the column name of the existing IDs in the sheet you'd like to use.}
+
+\item{pdf_compile}{By default all QR codes created will be compiled into a PDF. This argument is a character that is the file path you'd like this PDF to be saved to.}
 }
 \value{
-A folder of QR code PNGs, a data frame with the information, and googlesheets that has the links to those QR_codes and poster ids
+A PDF and folder of QR code PNGs, a data frame with the information, and googlesheets that has the links to those QR_codes and poster ids
 }
 \description{
 Given a poster googlesheet with the columns `poster_title` and `presenter_name` this function will create a new sheet that has a column with unique poster ids
