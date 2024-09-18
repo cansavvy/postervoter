@@ -4,6 +4,20 @@ opensource polling system for poster competitions or other things!
 
 You can [read the posterpoller package documentation here](https://hutchdatascience.org/posterpoller/).
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+  - [Install the package](#install-the-package)
+  - [Set Up](#set-up)
+- [Conducting the session](#conducting-the-session)
+  - [Example participant voter instructions](#example-participant-voter-instructions)
+  - [During the session](#during-the-session)
+  - [Calculating the scores](#calculating-the-scores)
+  - [Example calculation code:](#example-calculation-code)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
 ## Install the package
 
 You can install `posterpoller` using the `remotes` package to install from GitHub.
@@ -61,7 +75,7 @@ There will be a tiny pop up at the bottom left that says "COPY LINK". Click that
 
 Copy and paste this URL below to declare as an R object. It should look something like the example below. We'll need this for the next step.
 
-```{r eval = FALSE}
+```
 prefill_url <- "https://docs.google.com/forms/d/e/1FAIpQLScPnpDBbXXPSHBnEZeoUjLrx-brFq-bHl5cvQIkeEbDoKROIA/viewform?usp=pp_url&entry.38519462=%7Bposter_id%7D&entry.2095768008=%7Bpresenter_name%7D&entry.1154882998=%7Bposter_title%7D"
 ```
 
