@@ -7,13 +7,13 @@ You can [read the posterpoller package documentation here](https://hutchdatascie
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-  - [Install the package](#install-the-package)
-  - [Set Up](#set-up)
-- [Conducting the session](#conducting-the-session)
-  - [Example participant voter instructions](#example-participant-voter-instructions)
-  - [During the session](#during-the-session)
+  - [Install the package](#install-the-package)  
+  - [Set Up](#set-up)  
+- [Conducting the session](#conducting-the-session)  
+  - [Example participant voter instructions](#example-participant-voter-instructions)  
+  - [During the session](#during-the-session)  
   - [Calculating the scores](#calculating-the-scores)
-  - [Example calculation code:](#example-calculation-code)
+  - [Example calculation code:](#example-calculation-code)  
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -97,8 +97,8 @@ Print these QR codes out and put them to each poster.
 
 What you need before the poster session:
 
-- [ ] Printed out QR codes (four to a page is usually a fine size). 
-- [ ] Printed out voting instructions. 
+- [ ] Printed out QR codes (four to a page is usually a fine size).
+- [ ] Printed out voting instructions.
 - [ ] Poster session boards and set up including thumb tacks
 
 ## Example participant voter instructions
@@ -135,9 +135,9 @@ We ended up using this calculation for the score:
 ```
 log2(num_votes + 1)*mean_score*distinct_domain
 ```
-The mean highest rating was important but this made sure that the number of votes was weighted. People often vote 10s for all posters which means we needed a way to differentiate mean scores of 10. 
+The mean highest rating was important but this made sure that the number of votes was weighted. People often vote 10s for all posters which means we needed a way to differentiate mean scores of 10.
 
-`distinct_domain` is obtained from the email addresses and indicates the unique domains that voted for the poster (and is a proxy for institution membership of the voter). 
+`distinct_domain` is obtained from the email addresses and indicates the unique domains that voted for the poster (and is a proxy for institution membership of the voter).
 
 The `distinct_domain` aspect makes sure that there is no "home court advantage" for anyone nor is it just "who has the most friends" at the conference. Basically if individuals from a number of universities all agreed your poster was good that was more valuable then if all your votes came from the same institution (which is likely your lab or colleagues).
 
