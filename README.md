@@ -83,8 +83,9 @@ Print these QR codes out and put them to each poster.
 
 What you need before the poster session:
 
-- [ ] Printed out QR codes
-- [ ] Print out voting instructions
+- [ ] Printed out QR codes (four to a page is usually a fine size). 
+- [ ] Printed out voting instructions. 
+- [ ] Poster session boards and set up including thumb tacks
 
 Here's an [example of the voting instructions you can use](https://docs.google.com/presentation/d/15wIBWxdQSJVpHuKJUqfHMAumoD9wFR_3q-xGgKjxsm4/edit#slide=id.p
 
