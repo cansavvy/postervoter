@@ -87,9 +87,9 @@ What you need before the poster session:
 - [ ] Printed out voting instructions. 
 - [ ] Poster session boards and set up including thumb tacks
 
-Here's an [example of the voting instructions you can use](https://docs.google.com/presentation/d/15wIBWxdQSJVpHuKJUqfHMAumoD9wFR_3q-xGgKjxsm4/edit#slide=id.p
-
 ## Example participant voter instructions
+
+Here's an [example of the voting instructions you can use](https://docs.google.com/presentation/d/15wIBWxdQSJVpHuKJUqfHMAumoD9wFR_3q-xGgKjxsm4/edit#slide=id.p).
 
 > Open your phone’s camera to scan the voting QR code next to the poster you’d like to vote for.  
 Hold the camera with a steady shot of the QR code. You may have to click the image of the QR code.
@@ -110,7 +110,7 @@ If for some reason the QR code can not be found or doesn't work manually enter t
 
 ## During the session
 
-- Monitor data collection
+- Monitor data collection.
 - Be available for questions and any troubleshooting.
 
 ## Calculating the scores
