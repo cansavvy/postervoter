@@ -1773,22 +1773,35 @@ devtools::load_all()</code></pre>
 to set the seed</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0LnNlZWQoMTIzNClcbmBgYCJ9 -->
-<pre class="r"><code>set.seed(1234)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<ol style="list-style-type: decimal">
-<li>Create a Googlesheet that has the <code>poster_title</code> and
-<code>presenter_name</code> as columns:</li>
-</ol>
-<p><a href="https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0">See
-example here</a></p>
-<p>Declare it here.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG9zdGVyX2dvb2dsZXNoZWV0IDwtIFwiaHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vc3ByZWFkc2hlZXRzL2QvMTJhb21GeVQwekVITm1weUNRb0dkRGgxNlAtYlJwNFBrdDRQQ0NyVTdnWVkvZWRpdCNnaWQ9MFwiXG5gYGAifQ== -->
-<pre class="r"><code>poster_googlesheet &lt;- &quot;https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0&quot;</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2V0LnNlZWQoMTIzNClcbmBgYFxuYGBgIn0= -->
+<pre class="r"><code>```r
+set.seed(1234)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+1. Create a Googlesheet that has the `poster_title` and `presenter_name` as columns: 
+
+[See example here](https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0)
+
+Declare it here. 
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG9zdGVyX2dvb2dsZXNoZWV0IDwtIFwiaHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vc3ByZWFkc2hlZXRzL2QvMTJhb21GeVQwekVITm1weUNRb0dkRGgxNlAtYlJwNFBrdDRQQ0NyVTdnWVkvZWRpdCNnaWQ9MFwiXG5gYGAifQ== --&gt;
+
+```r
+poster_googlesheet &lt;- &quot;https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0&quot;</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1810,14 +1823,11 @@ Enter &#39;1&#39; to start a new auth process or select a pre-authorized account
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMlxuYGBgIn0= -->
 <pre class="r"><code>2</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiQXV0by1yZWZyZXNoaW5nIHN0YWxlIE9BdXRoIHRva2VuLlxuIn0= -->
-<pre><code>Auto-refreshing stale OAuth token.</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-output-begin eyJkYXRhIjoi4pyUIFJlYWRpbmcgZnJvbSBGYWtlIHBvc3RlciBkYXRhLlxu4pyUIFJhbmdlIFNoZWV0MS5cbiJ9 -->
 <pre><code>✔ Reading from Fake poster data.
 ✔ Range Sheet1.</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6Miwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIzIMOXIDIiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFSUFUvRE1CQjEwNlNvRWVWellQV0F4TlFzWFZoTEsyQUFoZ0pTTjNSMVRCdnEySkh0RkViK09BMTJZaU5rRC9iNW5kOTdkK2ZGZkRsSmx5bENxSS9pMk95SkNWSHkrbkk3dmtZb2pzeWxoMkkwdE9lWFNaK2J3SUluSGFOTlhNNUVXZFdhU29VSmNKd0xYQXBKc2Q2WUN3RkdhZ2FhdXJkSGQ1VFQ3dDFIWFZZT3ZaZy9UYThVdnFlc01BVDhyR1ZOZEMxcFlIUTR6UUUvaUIxbFFMemcyUTNJRlVqQWoyVEdDcTRGMmJyTTZVSW9NRkNPYnlYd3JZbUNoaElPSlZYT0kvSWVsVkNtbFRkZGFQWlhkQ1dwb3R6Q2xoTElES1g0ekx6VXlFcDltNjFwbXAvUWp6QlEzcytEYVE0YXNuZlo2cUo5UURrUWxTNEVONlRJVG40UWtIc3lBSTVyYml2SngyUlQ4KzE0RXFUN0ZWOWJ6eGJxMXNqRi9YOXgxRlVSTlk0K2NQUUI1ZXVDKzZra0RGYVVlZVdjN3Z5MHpEemFjV1NWTkIvaSt6U295clRRNENrcEVjd2piZWRvL3d2emk4ZG5qZ0lBQUE9PSJ9 -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6Miwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIzIMOXIDIiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFSUFUvRE1CQjEwNlNvRWVWellQV0F4TlFNc0xDV29zSUFEQVdrYnVqcW1EYlVzUzNiS1l6OGNScnNKRWJJSHV6ek83LzM3czd6MjhWVnVrZ1JRbjBVeDNaUGJJaVMxNWZaK0JxaE9MS1hIb3JSMEoxZk5uMXFBd2NldFl3bWNUNFZwYXdNVlJvVDREZ1h1QlNLWXJPMkZ3S01WQXdNN2Q0ZTNGRk8yM2NmVlNrNzlPejJhWEtoOFQxbGhTWGdaNk1xWWlwRkE2UDlTUTc0UVd3cEErSUZUMjVBTFVFQmZpUlRWbkFqeUtiTEhNK0ZCZ3ZsZUthQWIyd1VOSlJ3S0tudVBDTHZJWVcycmJ5WndyQy9vcVdpbW5JSE8wb2dNMVRpTS9OU0l5ZjFiYmU2cm45Q1A4SkFlejhQcGprWXlONVZvNHQyQVdWUFNGTUlia21SbS93Z0lQZFVBQnhXM0ZXU2o4bTY0cHZ4WlpEdVM3NXluZzNVcmxFWDkvL0ZVVnRGVkhmMFFVY2ZVTDRxdUo5S3dtQkptVmZPNmRaUHk4NmpHVWNtbGYwUTM2ZEZkV2FFQVU5SmlXQWVhVHBIdTErdU85dzlqZ0lBQUE9PSJ9 -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["poster_title"],"name":[1],"type":["chr"],"align":["left"]},{"label":["presenter_name"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Computers can do more than calculate","2":"Ada Lovelace"},{"1":"Genes can jump","2":"Barbara McClintock"},{"1":"DNA's Helical Structure","2":"Rosalind Franklin"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
@@ -1872,12 +1882,56 @@ this function.</li>
 <p>For reproducibility purposes.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuc2Vzc2lvbkluZm8oKVxuYGBgXG5gYGBcbmBgYCJ9 -->
-<pre class="r"><code>```r
-```r
-sessionInfo()</code></pre>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2Vzc2lvbkluZm8oKVxuYGBgIn0= -->
+<pre class="r"><code>sessionInfo()</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUiB2ZXJzaW9uIDQuNC4wICgyMDI0LTA0LTI0KVxuUGxhdGZvcm06IHg4Nl82NC1hcHBsZS1kYXJ3aW4yMFxuUnVubmluZyB1bmRlcjogbWFjT1MgU29ub21hIDE0LjYuMVxuXG5NYXRyaXggcHJvZHVjdHM6IGRlZmF1bHRcbkJMQVM6ICAgL1N5c3RlbS9MaWJyYXJ5L0ZyYW1ld29ya3MvQWNjZWxlcmF0ZS5mcmFtZXdvcmsvVmVyc2lvbnMvQS9GcmFtZXdvcmtzL3ZlY0xpYi5mcmFtZXdvcmsvVmVyc2lvbnMvQS9saWJCTEFTLmR5bGliIFxuTEFQQUNLOiAvTGlicmFyeS9GcmFtZXdvcmtzL1IuZnJhbWV3b3JrL1ZlcnNpb25zLzQuNC14ODZfNjQvUmVzb3VyY2VzL2xpYi9saWJSbGFwYWNrLmR5bGliOyAgTEFQQUNLIHZlcnNpb24gMy4xMi4wXG5cbmxvY2FsZTpcblsxXSBlbl9VUy5VVEYtOC9lbl9VUy5VVEYtOC9lbl9VUy5VVEYtOC9DL2VuX1VTLlVURi04L2VuX1VTLlVURi04XG5cbnRpbWUgem9uZTogQW1lcmljYS9JbmRpYW5hL0luZGlhbmFwb2xpc1xudHpjb2RlIHNvdXJjZTogaW50ZXJuYWxcblxuYXR0YWNoZWQgYmFzZSBwYWNrYWdlczpcblsxXSBzdGF0cyAgICAgZ3JhcGhpY3MgIGdyRGV2aWNlcyB1dGlscyAgICAgZGF0YXNldHMgIG1ldGhvZHMgICBiYXNlICAgICBcblxub3RoZXIgYXR0YWNoZWQgcGFja2FnZXM6XG5bMV0gcG9zdGVycG9sbGVyXzAuMC4xIG1hZ3JpdHRyXzIuMC4zICAgIFxuXG5sb2FkZWQgdmlhIGEgbmFtZXNwYWNlIChhbmQgbm90IGF0dGFjaGVkKTpcbiBbMV0gdGlkeXNlbGVjdF8xLjIuMSAgICBkcGx5cl8xLjEuNCAgICAgICAgIGZhc3RtYXBfMS4yLjAgICAgICAgamFuaXRvcl8yLjIuMCAgICAgIFxuIFs1XSBwcm9taXNlc18xLjMuMCAgICAgIGRpZ2VzdF8wLjYuMzcgICAgICAgdGltZWNoYW5nZV8wLjMuMCAgICBtaW1lXzAuMTIgICAgICAgICAgXG4gWzldIGxpZmVjeWNsZV8xLjAuNCAgICAgZWxsaXBzaXNfMC4zLjIgICAgICBwcm9jZXNzeF8zLjguNCAgICAgIGNvbXBpbGVyXzQuNC4wICAgICBcblsxM10gc2Fzc18wLjQuOSAgICAgICAgICBybGFuZ18xLjEuNCAgICAgICAgIHRvb2xzXzQuNC4wICAgICAgICAgdXRmOF8xLjIuNCAgICAgICAgIFxuWzE3XSB5YW1sXzIuMy4xMCAgICAgICAgIGtuaXRyXzEuNDggICAgICAgICAgYXNrcGFzc18xLjIuMCAgICAgICBodG1sd2lkZ2V0c18xLjYuNCAgXG5bMjFdIHBrZ2J1aWxkXzEuNC40ICAgICAgY3VybF81LjIuMSAgICAgICAgICB4bWwyXzEuMy42ICAgICAgICAgIHBrZ2xvYWRfMS40LjAgICAgICBcblsyNV0gd2Vic29ja2V0XzEuNC4yICAgICBtaW5pVUlfMC4xLjEuMSAgICAgIHdpdGhyXzMuMC4xICAgICAgICAgcHVycnJfMS4wLjIgICAgICAgIFxuWzI5XSBkZXNjXzEuNC4zICAgICAgICAgIGdyaWRfNC40LjAgICAgICAgICAgZ29vZ2xlZHJpdmVfMi4xLjEgICBmYW5zaV8xLjAuNiAgICAgICAgXG5bMzNdIHVybGNoZWNrZXJfMS4wLjEgICAgcHJvZnZpc18wLjMuOCAgICAgICB4dGFibGVfMS44LTQgICAgICAgIGNvbG9yc3BhY2VfMi4xLTEgICBcblszN10gZ2dwbG90Ml8zLjUuMSAgICAgICBzY2FsZXNfMS4zLjAgICAgICAgIGNsaV8zLjYuMyAgICAgICAgICAgcm1hcmtkb3duXzIuMjggICAgIFxuWzQxXSByYWdnXzEuMy4yICAgICAgICAgIGdlbmVyaWNzXzAuMS4zICAgICAgcmVtb3Rlc18yLjUuMCAgICAgICByc3R1ZGlvYXBpXzAuMTYuMCAgXG5bNDVdIGh0dHJfMS40LjcgICAgICAgICAgdHpkYl8wLjQuMCAgICAgICAgICBzZXNzaW9uaW5mb18xLjIuMiAgIGNhY2hlbV8xLjEuMCAgICAgICBcbls0OV0gY2hyb21vdGVfMC4yLjAgICAgICBzdHJpbmdyXzEuNS4xICAgICAgIHJ2ZXN0XzEuMC40ICAgICAgICAgYXNzZXJ0dGhhdF8wLjIuMSAgIFxuWzUzXSBjZWxscmFuZ2VyXzEuMS4wICAgIHZjdHJzXzAuNi41ICAgICAgICAgZGV2dG9vbHNfMi40LjUgICAgICBqc29ubGl0ZV8xLjguOCAgICAgXG5bNTddIGhtc18xLjEuMyAgICAgICAgICAgc3lzdGVtZm9udHNfMS4xLjAgICBtYWdpY2tfMi44LjQgICAgICAgIHRlc3R0aGF0XzMuMi4xLjEgICBcbls2MV0ganF1ZXJ5bGliXzAuMS40ICAgICB0aWR5cl8xLjMuMSAgICAgICAgIGdsdWVfMS43LjAgICAgICAgICAgcHNfMS43LjcgICAgICAgICAgIFxuWzY1XSBsdWJyaWRhdGVfMS45LjMgICAgIHN0cmluZ2lfMS44LjQgICAgICAgZ3RhYmxlXzAuMy41ICAgICAgICBsYXRlcl8xLjMuMiAgICAgICAgXG5bNjldIG11bnNlbGxfMC41LjEgICAgICAgdGliYmxlXzMuMi4xICAgICAgICBwaWxsYXJfMS45LjAgICAgICAgIGJyaW9fMS4xLjUgICAgICAgICBcbls3M10gcmFwcGRpcnNfMC4zLjMgICAgICBodG1sdG9vbHNfMC41LjguMSAgIG9wZW5zc2xfMi4yLjEgICAgICAgUjZfMi41LjEgICAgICAgICAgIFxuWzc3XSB0ZXh0c2hhcGluZ18wLjQuMCAgIHJwcm9qcm9vdF8yLjAuNCAgICAgZXZhbHVhdGVfMC4yNC4wICAgICBzaGlueV8xLjkuMSAgICAgICAgXG5bODFdIHJlYWRyXzIuMS41ICAgICAgICAgcG5nXzAuMS04ICAgICAgICAgICBnb29nbGVzaGVldHM0XzEuMS4xIG1lbW9pc2VfMi4wLjEgICAgICBcbls4NV0gc25ha2VjYXNlXzAuMTEuMSAgICBnYXJnbGVfMS41LjIgICAgICAgIGJzbGliXzAuOC4wLjkwMDAgICAgaHR0cHV2XzEuNi4xNSAgICAgIFxuWzg5XSBSY3BwXzEuMC4xMyAgICAgICAgIHhmdW5fMC40NyAgICAgICAgICAgZnNfMS42LjQgICAgICAgICAgICB1c2V0aGlzXzMuMC4wICAgICAgXG5bOTNdIHBrZ2NvbmZpZ18yLjAuMyAgICBcbiJ9 -->
+<pre><code>R version 4.4.0 (2024-04-24)
+Platform: x86_64-apple-darwin20
+Running under: macOS Sonoma 14.6.1
+
+Matrix products: default
+BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.4-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: America/Indiana/Indianapolis
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] posterpoller_0.0.1 magrittr_2.0.3    
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_1.2.1    dplyr_1.1.4         fastmap_1.2.0       janitor_2.2.0      
+ [5] promises_1.3.0      digest_0.6.37       timechange_0.3.0    mime_0.12          
+ [9] lifecycle_1.0.4     ellipsis_0.3.2      processx_3.8.4      compiler_4.4.0     
+[13] sass_0.4.9          rlang_1.1.4         tools_4.4.0         utf8_1.2.4         
+[17] yaml_2.3.10         knitr_1.48          askpass_1.2.0       htmlwidgets_1.6.4  
+[21] pkgbuild_1.4.4      curl_5.2.1          xml2_1.3.6          pkgload_1.4.0      
+[25] websocket_1.4.2     miniUI_0.1.1.1      withr_3.0.1         purrr_1.0.2        
+[29] desc_1.4.3          grid_4.4.0          googledrive_2.1.1   fansi_1.0.6        
+[33] urlchecker_1.0.1    profvis_0.3.8       xtable_1.8-4        colorspace_2.1-1   
+[37] ggplot2_3.5.1       scales_1.3.0        cli_3.6.3           rmarkdown_2.28     
+[41] ragg_1.3.2          generics_0.1.3      remotes_2.5.0       rstudioapi_0.16.0  
+[45] httr_1.4.7          tzdb_0.4.0          sessioninfo_1.2.2   cachem_1.1.0       
+[49] chromote_0.2.0      stringr_1.5.1       rvest_1.0.4         assertthat_0.2.1   
+[53] cellranger_1.1.0    vctrs_0.6.5         devtools_2.4.5      jsonlite_1.8.8     
+[57] hms_1.1.3           systemfonts_1.1.0   magick_2.8.4        testthat_3.2.1.1   
+[61] jquerylib_0.1.4     tidyr_1.3.1         glue_1.7.0          ps_1.7.7           
+[65] lubridate_1.9.3     stringi_1.8.4       gtable_0.3.5        later_1.3.2        
+[69] munsell_0.5.1       tibble_3.2.1        pillar_1.9.0        brio_1.1.5         
+[73] rappdirs_0.3.3      htmltools_0.5.8.1   openssl_2.2.1       R6_2.5.1           
+[77] textshaping_0.4.0   rprojroot_2.0.4     evaluate_0.24.0     shiny_1.9.1        
+[81] readr_2.1.5         png_0.1-8           googlesheets4_1.1.1 memoise_2.0.1      
+[85] snakecase_0.11.1    gargle_1.5.2        bslib_0.8.0.9000    httpuv_1.6.15      
+[89] Rcpp_1.0.13         xfun_0.47           fs_1.6.4            usethis_3.0.0      
+[93] pkgconfig_2.0.3    </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 </div>
 

@@ -4,12 +4,14 @@
 \alias{add_presenter_name}
 \title{Add presenter name to qr_code}
 \usage{
-add_presenter_name(presenter_name, png)
+add_presenter_name(presenter_name, png, poster_id)
 }
 \arguments{
 \item{presenter_name}{The name of the presenter you'd like to add to the qr code}
 
 \item{png}{a file path to a png you'd like to add a label to}
+
+\item{poster_id}{The associated id for the poster}
 }
 \value{
 A png with a name label on the top
