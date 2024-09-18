@@ -119,9 +119,13 @@ We calculated the scores in R.
 
 We ended up using this calculation for the score:
 ```
-log2(num_votes + 1)*mean_score*distinct_domain)
+log2(num_votes + 1)*mean_score*distinct_domain
 ```
-The mean highest rating was important but this made sure that the number of votes was weighted. People often vote 10s for all posters which means we needed a way to differentiate mean scores of 10. Additionally the `distinct_domain` aspect makes sure that there is no "home court advantage" for anyone. Basically if individuals from a number of universities all agreed your poster was good that was more valuable then if all your votes came from the same institution (which is likely your lab or colleagues).
+The mean highest rating was important but this made sure that the number of votes was weighted. People often vote 10s for all posters which means we needed a way to differentiate mean scores of 10. 
+
+`distinct_domain` is obtained from the email addresses and indicates the unique domains that voted for the poster (and is a proxy for institution membership of the voter). 
+
+The `distinct_domain` aspect makes sure that there is no "home court advantage" for anyone nor is it just "who has the most friends" at the conference. Basically if individuals from a number of universities all agreed your poster was good that was more valuable then if all your votes came from the same institution (which is likely your lab or colleagues).
 
 
 ## Example calculation code:
