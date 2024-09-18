@@ -1773,22 +1773,35 @@ devtools::load_all()</code></pre>
 to set the seed</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0LnNlZWQoMTIzNClcbmBgYCJ9 -->
-<pre class="r"><code>set.seed(1234)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<ol style="list-style-type: decimal">
-<li>Create a Googlesheet that has the <code>poster_title</code> and
-<code>presenter_name</code> as columns:</li>
-</ol>
-<p><a href="https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0">See
-example here</a></p>
-<p>Declare it here.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG9zdGVyX2dvb2dsZXNoZWV0IDwtIFwiaHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vc3ByZWFkc2hlZXRzL2QvMTJhb21GeVQwekVITm1weUNRb0dkRGgxNlAtYlJwNFBrdDRQQ0NyVTdnWVkvZWRpdCNnaWQ9MFwiXG5gYGAifQ== -->
-<pre class="r"><code>poster_googlesheet &lt;- &quot;https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0&quot;</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2V0LnNlZWQoMTIzNClcbmBgYFxuYGBgIn0= -->
+<pre class="r"><code>```r
+set.seed(1234)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+1. Create a Googlesheet that has the `poster_title` and `presenter_name` as columns: 
+
+[See example here](https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0)
+
+Declare it here. 
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG9zdGVyX2dvb2dsZXNoZWV0IDwtIFwiaHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vc3ByZWFkc2hlZXRzL2QvMTJhb21GeVQwekVITm1weUNRb0dkRGgxNlAtYlJwNFBrdDRQQ0NyVTdnWVkvZWRpdCNnaWQ9MFwiXG5gYGAifQ== --&gt;
+
+```r
+poster_googlesheet &lt;- &quot;https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0&quot;</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1810,14 +1823,11 @@ Enter &#39;1&#39; to start a new auth process or select a pre-authorized account
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMlxuYGBgIn0= -->
 <pre class="r"><code>2</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiQXV0by1yZWZyZXNoaW5nIHN0YWxlIE9BdXRoIHRva2VuLlxuIn0= -->
-<pre><code>Auto-refreshing stale OAuth token.</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-output-begin eyJkYXRhIjoi4pyUIFJlYWRpbmcgZnJvbSBGYWtlIHBvc3RlciBkYXRhLlxu4pyUIFJhbmdlIFNoZWV0MS5cbiJ9 -->
 <pre><code>✔ Reading from Fake poster data.
 ✔ Range Sheet1.</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6Miwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIzIMOXIDIiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFSUFUvRE1CQjEwNlNvRWVWellQV0F4TlFzWFZoTEsyQUFoZ0pTTjNSMVRCdnEySkh0RkViK09BMTJZaU5rRC9iNW5kOTdkK2ZGZkRsSmx5bENxSS9pMk95SkNWSHkrbkk3dmtZb2pzeWxoMkkwdE9lWFNaK2J3SUluSGFOTlhNNUVXZFdhU29VSmNKd0xYQXBKc2Q2WUN3RkdhZ2FhdXJkSGQ1VFQ3dDFIWFZZT3ZaZy9UYThVdnFlc01BVDhyR1ZOZEMxcFlIUTR6UUUvaUIxbFFMemcyUTNJRlVqQWoyVEdDcTRGMmJyTTZVSW9NRkNPYnlYd3JZbUNoaElPSlZYT0kvSWVsVkNtbFRkZGFQWlhkQ1dwb3R6Q2xoTElES1g0ekx6VXlFcDltNjFwbXAvUWp6QlEzcytEYVE0YXNuZlo2cUo5UURrUWxTNEVONlRJVG40UWtIc3lBSTVyYml2SngyUlQ4KzE0RXFUN0ZWOWJ6eGJxMXNqRi9YOXgxRlVSTlk0K2NQUUI1ZXVDKzZra0RGYVVlZVdjN3Z5MHpEemFjV1NWTkIvaSt6U295clRRNENrcEVjd2piZWRvL3d2emk4ZG5qZ0lBQUE9PSJ9 -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6Miwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIzIMOXIDIiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFSUFUvRE1CQjEwNlNvRWVWellQV0F4TlFNc0xDV29zSUFEQVdrYnVqcW1EYlVzUzNiS1l6OGNScnNKRWJJSHV6ek83LzM3czd6MjhWVnVrZ1JRbjBVeDNaUGJJaVMxNWZaK0JxaE9MS1hIb3JSMEoxZk5uMXFBd2NldFl3bWNUNFZwYXdNVlJvVDREZ1h1QlNLWXJPMkZ3S01WQXdNN2Q0ZTNGRk8yM2NmVlNrNzlPejJhWEtoOFQxbGhTWGdaNk1xWWlwRkE2UDlTUTc0UVd3cEErSUZUMjVBTFVFQmZpUlRWbkFqeUtiTEhNK0ZCZ3ZsZUthQWIyd1VOSlJ3S0tudVBDTHZJWVcycmJ5WndyQy9vcVdpbW5JSE8wb2dNMVRpTS9OU0l5ZjFiYmU2cm45Q1A4SkFlejhQcGprWXlONVZvNHQyQVdWUFNGTUlia21SbS93Z0lQZFVBQnhXM0ZXU2o4bTY0cHZ4WlpEdVM3NXluZzNVcmxFWDkvL0ZVVnRGVkhmMFFVY2ZVTDRxdUo5S3dtQkptVmZPNmRaUHk4NmpHVWNtbGYwUTM2ZEZkV2FFQVU5SmlXQWVhVHBIdTErdU85dzlqZ0lBQUE9PSJ9 -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["poster_title"],"name":[1],"type":["chr"],"align":["left"]},{"label":["presenter_name"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Computers can do more than calculate","2":"Ada Lovelace"},{"1":"Genes can jump","2":"Barbara McClintock"},{"1":"DNA's Helical Structure","2":"Rosalind Franklin"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
@@ -1872,11 +1882,13 @@ this function.</li>
 <p>For reproducibility purposes.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuc2Vzc2lvbkluZm8oKVxuYGBgXG5gYGBcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuc2Vzc2lvbkluZm8oKVxuYGBgXG5gYGBcbmBgYFxuYGBgIn0= -->
 <pre class="r"><code>```r
+```r
 ```r
 sessionInfo()</code></pre>
 <pre><code></code></pre>
+<p>```</p>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 </div>

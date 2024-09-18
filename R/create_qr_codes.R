@@ -16,28 +16,25 @@ make_qr_code <- function(prefill_url,
 
   if (!dir.exists(dest_folder)) dir.create(dest_folder, showWarnings = FALSE)
 
-  posters_url <- gsub("%7Bposter_id%7D", poster_id, prefill_url)
+  posters_url <- gsub("%7Bposter_id%7D", as.character(poster_id), prefill_url)
 
-  poster_title <- gsub(" ", "+", poster_title)
-  posters_url <- gsub("%7Bposter_title%7D", poster_title, posters_url)
-
-  presenter_name <- gsub(" ", "+", presenter_name)
   posters_url <- gsub("%7Bpresenter_name%7D", presenter_name, posters_url)
 
-  posters_url <- gsub("&", "%26", posters_url)
+  posters_url <- gsub("%7Bposter_title%7D", poster_title, posters_url)
 
-  api_endpoint <- paste0("https://api.qrserver.com/v1/create-qr-code/?data=", posters_url, "&size=200x200")
+  api_endpoint <- paste0("https://api.qrserver.com/v1/create-qr-code/?data=", URLencode(posters_url), "&size=200x200")
 
   response <- httr::GET(api_endpoint)
 
-  png_file <- file.path(dest_folder, paste0(poster_id, "_", presenter_name, ".png"))
+  png_file <- file.path(dest_folder, paste0(poster_id, "_", gsub(" ", "_", presenter_name), ".png"))
 
   download.file(api_endpoint,
                 destfile = png_file
                 )
 
   add_presenter_name(presenter_name = presenter_name,
-                     png = png_file)
+                     png = png_file,
+                     poster_id = as.character(poster_id))
 
   message("QR Code generated and stored as ", png_file)
 

@@ -81,8 +81,6 @@ generate_poster_ids <- function(prefill_url,
     return(qr_link)
   })
 
-  qr_code_links
-
   poster_data <- data.frame(poster_key,
                             qr_link = unlist(purrr::map(qr_code_links, ~ .x$url)),
                             file_paths = unlist(purrr::map(qr_code_links, ~ .x$file_path)))
@@ -109,7 +107,7 @@ generate_poster_ids <- function(prefill_url,
 
   if (!is.null(pdf_compile)) {
     message("Compling as PDF")
-    all_qr_codes <- list.files("itcr_2024_qr-codes", full.names = TRUE)
+    all_qr_codes <- list.files(dest_folder, full.names = TRUE)
 
     all_images <- purrr::reduce(
       purrr::map(all_qr_codes, magick::image_read),
