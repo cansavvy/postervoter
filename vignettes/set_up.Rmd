@@ -79,7 +79,8 @@ generate_poster_ids(prefill_url = prefill_url,
 ```
 
 
-Your key and all qr codes will be saved to the specified `dest_folder`
+Your key and all qr codes will be saved to the specified `dest_folder`. 
+
 ## Session info
 
 For reproducibility purposes.
