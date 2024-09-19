@@ -1,13 +1,11 @@
 # posterpoller
 
-opensource polling system for poster competitions or other things!
-
-You can [read the posterpoller package documentation here](https://hutchdatascience.org/posterpoller/).
+opensource qr-code based polling system for poster competitions or other things!
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-  - [Install the package](#install-the-package)  
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*  
+  - [Install the package](#install-the-package)   
   - [Set Up](#set-up)  
 - [Conducting the session](#conducting-the-session)  
   - [Example participant voter instructions](#example-participant-voter-instructions)  
