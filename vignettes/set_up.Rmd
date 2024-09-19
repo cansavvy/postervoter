@@ -1,5 +1,5 @@
 ---
-title: "set_up"
+title: "Set Up IDs and QR codes"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{set_up}
@@ -26,16 +26,18 @@ If for any reason you need to regenerate the same ids you will want to set the s
 set.seed(1234)
 ```
 
-1. Create a Googlesheet or CSV file that has the `poster_title` and `presenter_name` as columns:
-
-[See example here](https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0)
+1. Create a Googlesheet or CSV file that has the `poster_title` and `presenter_name` as columns. 
 
 You can start by declaring the URL to your googlesheet or the file path to your local csv file. 
+
+[See example googlesheet here](https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0)
 
 ```{r}
 poster_googlesheet <- "https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0"
 ```
-OR 
+
+OR see an example CSV file and its file path by calling our `example_poster_data_file_path()` 
+
 ```{r}
 poster_csv <- example_poster_data_file_path()
 poster_csv
@@ -76,6 +78,8 @@ generate_poster_ids(prefill_url = prefill_url,
                     pdf_compile = "all-qr-codes")
 ```
 
+
+Your key and all qr codes will be saved to the specified `dest_folder`
 ## Session info
 
 For reproducibility purposes.
