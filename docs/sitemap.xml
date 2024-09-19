@@ -1,0 +1,26 @@
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/PULL_REQUEST_TEMPLATE.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/reference/add_presenter_name.html</loc></url>
+<url><loc>/reference/app_set_up.html</loc></url>
+<url><loc>/reference/auth_from_secret.html</loc></url>
+<url><loc>/reference/authorize.html</loc></url>
+<url><loc>/reference/cache_secrets_folder.html</loc></url>
+<url><loc>/reference/check_check.html</loc></url>
+<url><loc>/reference/default_creds_path.html</loc></url>
+<url><loc>/reference/delete_creds.html</loc></url>
+<url><loc>/reference/encrypt_creds_path.html</loc></url>
+<url><loc>/reference/generate_poster_ids.html</loc></url>
+<url><loc>/reference/get_google_form.html</loc></url>
+<url><loc>/reference/hello.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/key_encrypt_creds_path.html</loc></url>
+<url><loc>/reference/make_poll.html</loc></url>
+<url><loc>/reference/make_qr_code.html</loc></url>
+<url><loc>/reference/make_random_ids.html</loc></url>
+</urlset>
+
