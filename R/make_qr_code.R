@@ -1,6 +1,9 @@
 
 #' Make QR code for a poster
 #' @description This returns a random jumble of letters and numbers that are used as poster ids
+#' @param prefill_url Go to your form, click on the vertical "..." to see more options in the right corner. Click "get prefill link".
+#' Put in the poster id and poster name responses `{poster_id}` and `{poster_name}` respectively
+#' @param dest_folder A character string of the folder where qr-codes should be saved. If the folder doesn't exist, one will be made with this name. Default is `qr-codes`.
 #' @param poster_id The associated id for the poster
 #' @param poster_title The title for the poster
 #' @param presenter_name The presenter of the poster

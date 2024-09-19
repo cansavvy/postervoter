@@ -24,6 +24,7 @@ Imports:
     rprojroot,
     ggplot2, 
     magick,
+    png,
 Suggests: 
     knitr,
     rmarkdown,

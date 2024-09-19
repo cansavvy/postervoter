@@ -15,7 +15,7 @@ make_random_ids <- function(n = 1, seed = 1234) {
 #' Generate poster ids
 #' @description Given a poster googlesheet with the columns `poster_title` and `presenter_name` this function will create a new sheet that has a column with unique poster ids
 #' @param prefill_url Go to your form, click on the vertical "..." to see more options in the right corner. Click "get prefill link".
-#' Put in the poster id and poster name responses {poster_id} and {poster_name} respectively
+#' Put in the poster id and poster name responses `{poster_id}` and `{poster_name}` respectively
 #' @param poster_googlesheet A link to a googlesheet that contains at least two column names that are `poster_title` and `presenter_name`
 #' @param dest_folder A character string of the folder where qr-codes should be saved. If the folder doesn't exist, one will be made with this name. Default is `qr-codes`.
 #' @param poster_id By default poster ids will be created. Alternatively you can use this argument to specify the column name of the existing IDs in the sheet you'd like to use.
