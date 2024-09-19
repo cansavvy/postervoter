@@ -6,7 +6,7 @@
 \usage{
 generate_poster_ids(
   prefill_url,
-  poster_googlesheet,
+  poster_key_file,
   dest_folder = "qr-codes",
   poster_id = NULL,
   pdf_compile = "all-qr-codes.pdf"
@@ -14,9 +14,9 @@ generate_poster_ids(
 }
 \arguments{
 \item{prefill_url}{Go to your form, click on the vertical "..." to see more options in the right corner. Click "get prefill link".
-Put in the poster id and poster name responses `{poster_id}` and `{poster_name}` respectively}
+Put in the poster id and poster name responses `\{poster_id\}` and `\{poster_name\}` respectively}
 
-\item{poster_googlesheet}{A link to a googlesheet that contains at least two column names that are `poster_title` and `presenter_name`}
+\item{poster_key_file}{A link to a googlesheet or file path to a csv that contains at least two column names that are exactly `poster_title` and `presenter_name`}
 
 \item{dest_folder}{A character string of the folder where qr-codes should be saved. If the folder doesn't exist, one will be made with this name. Default is `qr-codes`.}
 
@@ -33,11 +33,22 @@ Given a poster googlesheet with the columns `poster_title` and `presenter_name` 
 \examples{
 \dontrun{
 
-prefill_url <- "https://docs.google.com/forms/d/e/1FAIpQLSepdIqUoLA9fgPksF_x7r5-hvTbd8ZoDH2h0uUQuvVdvhujMA/viewform?usp=pp_url&entry.38519462=\%7Bposter_id\%7D&entry.1154882998=\%7Bposter_name\%7D"
-poster_googlesheet <- "https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0"
+# Declare the path to your data. Can be a googlesheet URL or a CSV file path
+# You do not need to use paste to build your URL.
+# We can't have lines longer than 100 char in our docs.
+prefill_url <- paste0("https://docs.google.com/forms/d/e/",
+"1FAIpQLSepdIqUoLA9fgPksF_x7r5-hvTbd8ZoDH2h0uUQuvVdvhujMA/viewform?usp=pp_url",
+"&entry.38519462=\%7Bposter_id\%7D&entry.1154882998=\%7Bposter_name\%7D")
+
+poster_googlesheet <-
+"https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0"
 
 generate_poster_ids(prefill_url = prefill_url,
-                   poster_googlesheet = poster_googlesheet)
+                   poster_key_file = poster_googlesheet)
 
+poster_csv <- example_poster_data_file_path()
+
+generate_poster_ids(prefill_url = prefill_url,
+                   poster_key_file = poster_csv)
 }
 }

@@ -34,4 +34,4 @@ rsconnect/
 .secrets/
 inst/doc
 .DS_Store
-
+.secrets

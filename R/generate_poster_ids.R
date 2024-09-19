@@ -15,8 +15,8 @@ make_random_ids <- function(n = 1, seed = 1234) {
 #' Generate poster ids
 #' @description Given a poster googlesheet with the columns `poster_title` and `presenter_name` this function will create a new sheet that has a column with unique poster ids
 #' @param prefill_url Go to your form, click on the vertical "..." to see more options in the right corner. Click "get prefill link".
-#' Put in the poster id and poster name responses `{poster_id}` and `{poster_name}` respectively
-#' @param poster_googlesheet A link to a googlesheet that contains at least two column names that are `poster_title` and `presenter_name`
+#' Put in the poster id and poster name responses `\{poster_id\}` and `\{poster_name\}` respectively
+#' @param poster_key_file A link to a googlesheet or file path to a csv that contains at least two column names that are exactly `poster_title` and `presenter_name`
 #' @param dest_folder A character string of the folder where qr-codes should be saved. If the folder doesn't exist, one will be made with this name. Default is `qr-codes`.
 #' @param poster_id By default poster ids will be created. Alternatively you can use this argument to specify the column name of the existing IDs in the sheet you'd like to use.
 #' @param pdf_compile By default all QR codes created will be compiled into a PDF. This argument is a character that is the file path you'd like this PDF to be saved to.
@@ -29,25 +29,39 @@ make_random_ids <- function(n = 1, seed = 1234) {
 #' @export
 #' @examples \dontrun{
 #'
-#' prefill_url <- "https://docs.google.com/forms/d/e/1FAIpQLSepdIqUoLA9fgPksF_x7r5-hvTbd8ZoDH2h0uUQuvVdvhujMA/viewform?usp=pp_url&entry.38519462=%7Bposter_id%7D&entry.1154882998=%7Bposter_name%7D"
-#' poster_googlesheet <- "https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0"
+#' # Declare the path to your data. Can be a googlesheet URL or a CSV file path
+#' # You do not need to use paste to build your URL.
+#' # We can't have lines longer than 100 char in our docs.
+#' prefill_url <- paste0("https://docs.google.com/forms/d/e/",
+#' "1FAIpQLSepdIqUoLA9fgPksF_x7r5-hvTbd8ZoDH2h0uUQuvVdvhujMA/viewform?usp=pp_url",
+#' "&entry.38519462=%7Bposter_id%7D&entry.1154882998=%7Bposter_name%7D")
+#'
+#' poster_googlesheet <-
+#' "https://docs.google.com/spreadsheets/d/12aomFyT0zEHNmpyCQoGdDh16P-bRp4Pkt4PCCrU7gYY/edit#gid=0"
 #'
 #'generate_poster_ids(prefill_url = prefill_url,
-#'                    poster_googlesheet = poster_googlesheet)
+#'                    poster_key_file = poster_googlesheet)
 #'
+#' poster_csv <- example_poster_data_file_path()
+#'
+#'generate_poster_ids(prefill_url = prefill_url,
+#'                    poster_key_file = poster_csv)
 #'}
 
 generate_poster_ids <- function(prefill_url,
-                                poster_googlesheet,
+                                poster_key_file,
                                 dest_folder = "qr-codes",
                                 poster_id = NULL,
                                 pdf_compile = "all-qr-codes.pdf") {
 
-  library(magrittr)
+  if (grepl("https", poster_key_file)) {
+    poster_key <- googlesheets4::read_sheet(
+      poster_googlesheet
+    )
+  } else {
+    poster_key <- readr::read_csv(poster_key_file)
+  }
 
-  poster_key <- googlesheets4::read_sheet(
-    poster_googlesheet
-  )
   num_of_posters <- nrow(poster_key)
 
   if (!all(c("presenter_name", "poster_title") %in% colnames(poster_key))) stop("No columns named `presenter_name`, `poster_title` found.")
@@ -63,11 +77,19 @@ generate_poster_ids <- function(prefill_url,
   poster_key$prefill_url <- prefill_url
   poster_key$dest_folder <- dest_folder
 
-  sheet_url <- googlesheets4::sheet_write(
-    as.data.frame(poster_key),
-    ss = poster_googlesheet,
-    sheet = "posterpoller_id_key"
-  )
+
+  if (grepl("https", poster_key_file)) {
+    sheet_url <- googlesheets4::sheet_write(
+      as.data.frame(poster_key),
+      ss = poster_googlesheet,
+      sheet = "posterpoller_id_key"
+    )
+  } else {
+    poster_key <- readr::write_csv(
+      as.data.frame(poster_key),
+      file.path(dest_folder, "posterpoller_key.csv")
+      )
+  }
 
   qr_code_links <- purrr::pmap(poster_key, function(prefill_url, poster_id, presenter_name, poster_title, dest_folder) {
 
@@ -85,29 +107,40 @@ generate_poster_ids <- function(prefill_url,
                             qr_link = unlist(purrr::map(qr_code_links, ~ .x$url)),
                             file_paths = unlist(purrr::map(qr_code_links, ~ .x$file_path)))
 
-  sheet_url <- googlesheets4::sheet_write(
-    poster_data,
-    ss = poster_googlesheet,
-    sheet = "posterpoller_id_key"
-  )
+  if (grepl("https", poster_key_file)) {
+    sheet_url <- googlesheets4::sheet_write(
+      poster_data,
+      ss = poster_googlesheet,
+      sheet = "posterpoller_id_key"
+    )
+    base_url <- "https://docs.google.com/spreadsheets/d/"
 
-  base_url <- "https://docs.google.com/spreadsheets/d/"
+    sheet_id <-  googlesheets4::sheet_properties(sheet_url) %>%
+      dplyr::filter(name == "posterpoller_id_key") %>%
+      dplyr::pull(id)
 
-  sheet_id <-  googlesheets4::sheet_properties(sheet_url) %>%
-    dplyr::filter(name == "posterpoller_id_key") %>%
-    dplyr::pull(id)
+    output <-paste0(
+      base_url,
+      googledrive::as_id(sheet_url),
+      "/edit#gid=",
+      sheet_id)
 
-  url <-paste0(
-    base_url,
-    googledrive::as_id(sheet_url),
-    "/edit#gid=",
-    sheet_id)
+    browseURL(output)
 
-  message("Data saved in ", url)
+  } else {
+    poster_key <- readr::write_csv(
+      poster_data,
+      file.path(dest_folder, "posterpoller_key.csv")
+      )
+
+    output <- file.path(dest_folder, "posterpoller_key.csv")
+  }
+
+  message("Data saved in ", output)
 
   if (!is.null(pdf_compile)) {
     message("Compling as PDF")
-    all_qr_codes <- list.files(dest_folder, full.names = TRUE)
+    all_qr_codes <- list.files(dest_folder, pattern = "\\.png$", full.names = TRUE)
 
     all_images <- purrr::reduce(
       purrr::map(all_qr_codes, magick::image_read),
@@ -115,7 +148,6 @@ generate_poster_ids <- function(prefill_url,
     )
     magick::image_write(all_images , format = "pdf", pdf_compile)
   }
-  browseURL(url)
 
   return(poster_data)
 }

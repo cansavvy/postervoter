@@ -8,7 +8,7 @@ make_qr_code(prefill_url, poster_id, poster_title, presenter_name, dest_folder)
 }
 \arguments{
 \item{prefill_url}{Go to your form, click on the vertical "..." to see more options in the right corner. Click "get prefill link".
-Put in the poster id and poster name responses `{poster_id}` and `{poster_name}` respectively}
+Put in the poster id and poster name responses `\{poster_id\}` and `\{poster_name\}` respectively}
 
 \item{poster_id}{The associated id for the poster}
 

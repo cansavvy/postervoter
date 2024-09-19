@@ -1,0 +1,108 @@
+---
+title: "post_session_tally"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{post_session_tally}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(posterpoller)
+```
+
+## About the score calculation
+
+We ended up using this calculation for the score:
+```
+log2(num_votes + 1)*mean_score*distinct_domain
+```
+The mean highest rating was important but this made sure that the number of votes was weighted. People often vote 10s for all posters which means we needed a way to differentiate mean scores of 10.
+
+`distinct_domain` is obtained from the email addresses and indicates the unique domains that voted for the poster (and is a proxy for institution membership of the voter).
+
+The `distinct_domain` aspect makes sure that there is no "home court advantage" for anyone nor is it just "who has the most friends" at the conference. Basically if individuals from a number of universities all agreed your poster was good that was more valuable then if all your votes came from the same institution (which is likely your lab or colleagues).
+
+```{r, include = FALSE}
+library(magrittr)
+```
+
+## Setting up the vote response sheet
+
+In your poster voting google form that you set up previously you will need to go to `Responses` > `Link to sheet`. Then you will put the URL for that where we have `<voting_googlesheet_URL>` below.
+
+```r
+votes_df <- googlesheets4::read_sheet(<sheet_link here>) %>%
+  janitor::clean_names() %>%
+  dplyr::rename(email = email_address_conference_registration_email_address_must_be_used,
+                score = on_a_scale_of_1_to_10_how_would_you_rate_the_clarity_of_scientific_communication_in_this_poster_presentation)
+```
+
+Account for spaces sometimes being trimmed by some QR code readers:
+
+```r
+votes_df <- votes_df %>%
+  dplyr::mutate(presenter_name = gsub(" ", "", trimws(presenter_name)),
+                poster_title = gsub(" ", "", trimws(poster_title)))
+# Minor formatting fix.
+votes_df$poster_id <- unlist(votes_df$poster_id)
+
+```
+
+People may accidentally vote twice. We will keep the most recent vote only.
+
+```r
+all_df <- all_df %>%
+  dplyr::distinct(poster_id, email, .keep_all = TRUE) %>%
+  readr::write_csv("raw_data.csv")
+
+all_df
+```
+
+Now tally various types of scores. We'll save to a CSV file.
+
+```r
+tally_df <- all_df %>%
+  #
+  tidyr::separate(email, sep = "@", into = c("email_name", "domain")) %>%
+  dplyr::group_by(poster_id, presenter_name) %>%
+  dplyr::summarize(mean_score = mean(score),
+                   sd = sd(score),
+                   num_votes = dplyr::n(),
+                   distinct_domain = length(unique(domain)),
+                   score = log2(num_votes + 1)*mean_score*distinct_domain) %>%
+  dplyr::arrange(desc(distinct_domain), desc(score)) %>%
+  readr::write_csv("final_scores.csv")
+```
+
+
+## Plots
+
+Distribution of number of votes per poster.
+
+```r
+library(ggplot2)
+  ggplot2::qplot(x = tally_df$num_votes, geom = "density") +
+    ggplot2::xlab("Number of votes")
+```
+
+Distribution of score.
+```r
+  ggplot2::qplot(x = tally_df$score, geom = "density") +
+    ggplot2::xlab("score")
+```
+
+## Session info
+
+For reproducibility purposes.
+
+```{r}
+sessionInfo()
+```

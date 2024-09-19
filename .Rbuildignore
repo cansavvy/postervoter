@@ -1,3 +1,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.httr-oauth$
+^\.secrets$
+LICENSE
+qr-codes/*
+^all-qr-codes.pdf$
+^docs/*
+^resources/*
+^.github/*

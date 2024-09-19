@@ -12,19 +12,15 @@ URL: https://github.com/fhdsl/posterpoller
 BugReports: https://github.com/fhdsl/posterpoller/issues
 Imports:
     httr,
-    jsonlite,
-    assertthat,
+    magrittr,
     dplyr,
     purrr,
-    tidyr,
     googledrive,
     googlesheets4,
-    magrittr, 
-    rvest,
-    rprojroot,
     ggplot2, 
     magick,
     png,
+    readr,
 Suggests: 
     knitr,
     rmarkdown,
