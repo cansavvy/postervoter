@@ -153,7 +153,7 @@ votes_df <- googlesheets4::read_sheet(<sheet_link here>) %>%
 
 Account for spaces sometimes being trimmed by some QR code readers:
 
-```{r}
+```r
 votes_df <- votes_df %>%
   dplyr::mutate(presenter_name = gsub(" ", "", trimws(presenter_name)),
                 poster_title = gsub(" ", "", trimws(poster_title)))
@@ -174,7 +174,7 @@ all_df
 
 Now tally various types of scores.
 
-```{r}
+```r
 tally_df <- all_df %>%
   #
   tidyr::separate(email, sep = "@", into = c("email_name", "domain")) %>%
