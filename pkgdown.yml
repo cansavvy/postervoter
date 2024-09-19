@@ -1,5 +1,7 @@
 pandoc: 3.1.11
 pkgdown: 2.1.1
 pkgdown_sha: ~
-articles: {}
-last_built: 2024-09-19T13:03Z
+articles:
+  post_session_tally: post_session_tally.html
+  set_up: set_up.html
+last_built: 2024-09-19T13:58Z

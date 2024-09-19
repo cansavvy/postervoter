@@ -2,9 +2,13 @@
 <url><loc>/404.html</loc></url>
 <url><loc>/LICENSE-text.html</loc></url>
 <url><loc>/PULL_REQUEST_TEMPLATE.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/post_session_tally.html</loc></url>
+<url><loc>/articles/set_up.html</loc></url>
 <url><loc>/authors.html</loc></url>
 <url><loc>/index.html</loc></url>
 <url><loc>/reference/add_presenter_name.html</loc></url>
+<url><loc>/reference/example_poster_data_file_path.html</loc></url>
 <url><loc>/reference/generate_poster_ids.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
 <url><loc>/reference/make_qr_code.html</loc></url>
