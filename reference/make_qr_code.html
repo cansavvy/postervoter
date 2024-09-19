@@ -41,7 +41,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Make QR code for a poster</h1>
-    <small class="dont-index">Source: <a href="https://github.com/fhdsl/posterpoller/blob/main/R/create_qr_codes.R" class="external-link"><code>R/create_qr_codes.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/fhdsl/posterpoller/blob/main/R/make_qr_code.R" class="external-link"><code>R/make_qr_code.R</code></a></small>
     <div class="hidden name"><code>make_qr_code.Rd</code></div>
     </div>
 
@@ -57,7 +57,12 @@
     <h2>Arguments</h2>
 
 
-<dl><dt id="arg-poster-id">poster_id<a class="anchor" aria-label="anchor" href="#arg-poster-id"></a></dt>
+<dl><dt id="arg-prefill-url">prefill_url<a class="anchor" aria-label="anchor" href="#arg-prefill-url"></a></dt>
+<dd><p>Go to your form, click on the vertical "..." to see more options in the right corner. Click "get prefill link".
+Put in the poster id and poster name responses `poster_id` and `poster_name` respectively</p></dd>
+
+
+<dt id="arg-poster-id">poster_id<a class="anchor" aria-label="anchor" href="#arg-poster-id"></a></dt>
 <dd><p>The associated id for the poster</p></dd>
 
 
@@ -67,6 +72,10 @@
 
 <dt id="arg-presenter-name">presenter_name<a class="anchor" aria-label="anchor" href="#arg-presenter-name"></a></dt>
 <dd><p>The presenter of the poster</p></dd>
+
+
+<dt id="arg-dest-folder">dest_folder<a class="anchor" aria-label="anchor" href="#arg-dest-folder"></a></dt>
+<dd><p>A character string of the folder where qr-codes should be saved. If the folder doesn't exist, one will be made with this name. Default is `qr-codes`.</p></dd>
 
 </dl></div>
     <div id="value">
